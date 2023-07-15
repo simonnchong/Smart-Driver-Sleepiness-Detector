@@ -39,13 +39,13 @@ detector = dlib.get_frontal_face_detector()
 predictor = dlib.shape_predictor("shape_predictor_68_face_landmarks.dat")
 
 vs=VideoStream(usePiCamera=True).start()
-vs.camera.rotation = -90
+# vs.camera.rotation = -90
 time.sleep(1.0)
 
-# ---------------------------------------- remove the files older than 3 days ------------------------------------
+# ---------------------------------------- remove the files older than 7 days ------------------------------------
 current_datetime = datetime.datetime.now()
 threshold = datetime.timedelta(days=7)
-directory = "data/"  
+directory = "/home/simon/Desktop"  
 files = os.listdir(directory)
 
 for file_name in files:
@@ -58,8 +58,8 @@ for file_name in files:
         if time_difference > threshold:
             # Remove the file
             os.remove(file_path)
-            print(f"File '{file_name}' removed successfully.")
-            print("File older than 7 days have been removed completely.")
+#             print(f"File '{file_name}' removed successfully.")
+#             print("File older than 7 days have been removed completely.")
 # ---------------------------------------------------------------------------------------------------
 
 while 1:
@@ -106,7 +106,7 @@ while 1:
                 current_date = datetime.datetime.now()
                 formatted_date = current_date.strftime("%Y-%m-%d")
 
-                file_name = f"data/{formatted_date}.txt"
+                file_name = f"/home/simon/Desktop/{formatted_date}.txt"
                 current_time = current_date.strftime("%H:%M:%S")
                 if os.path.exists(file_name):
                     with open(file_name, 'a') as file:
@@ -117,7 +117,7 @@ while 1:
                         file.write(f"EAR Value \t Sleepiness Status \t\t Time\n\n")
                         file.write(f"{ear:.2f} \t\t Sleepiness Detected \t\t {current_time}\n")
 
-                print(f"Text file '{file_name}' created and written successfully.")
+#                 print(f"Text file '{file_name}' created and written successfully.")
                 
             else:
                 ALARM_ON = False
